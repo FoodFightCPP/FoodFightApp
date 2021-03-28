@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:views="clr-namespace:FoodFight.Views"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.IsSwipePagingEnabled="False"
+            BarBackgroundColor="#FCBF49"
+            android:TabbedPage.BarItemColor="#333942"
+            android:TabbedPage.BarSelectedItemColor="White"
+             x:Class="FoodFight.Views.MainPage">
+
+    <TabbedPage.Children>
+        <NavigationPage Title="Contacts" IconImageSource="ic_action_contact.png" >
+            <x:Arguments>
+                <views:Contacts/>
+            </x:Arguments>
+        </NavigationPage>
+
+        <NavigationPage Title="Favorites" IconImageSource="ic_action_favorite.png" >
+            <x:Arguments>
+                <views:Favorites/>
+            </x:Arguments>
+        </NavigationPage>
+
+        <NavigationPage Title="Home" IconImageSource="ic_action_home.png" >
+            <x:Arguments>
+                <views:Home/>
+            </x:Arguments>
+        </NavigationPage>
+
+        <NavigationPage Title="Start" IconImageSource="ic_action_location_on.png" >
+            <x:Arguments>
+                <views:Start/>
+            </x:Arguments>
+        </NavigationPage>
+
+        <NavigationPage Title="Profile" IconImageSource="ic_action_person.png" >
+            <x:Arguments>
+                <views:Profile/>
+            </x:Arguments>
+        </NavigationPage>
+
+        <NavigationPage Title="Settings" IconImageSource="ic_action_settings.png" >
+            <x:Arguments>
+                <views:Settings/>
+            </x:Arguments>
+        </NavigationPage>
+    </TabbedPage.Children>
+
+</TabbedPage>
