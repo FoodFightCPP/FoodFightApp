@@ -41,6 +41,7 @@ namespace FoodFight
             containerRegistry.RegisterSingleton<IDataService<User>, GenericDataService<User>>();
             containerRegistry.RegisterSingleton<IDataService<Restaurant>, GenericDataService<Restaurant>>();
             containerRegistry.RegisterSingleton<IDataService<FavoriteRestaurant>, GenericDataService<FavoriteRestaurant>>();
+            containerRegistry.RegisterSingleton<IDataService<MatchSession>, GenericDataService<MatchSession>>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();

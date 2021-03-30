@@ -137,6 +137,8 @@ namespace FoodFight.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private async void SignUpClicked(object obj)
         {
+            // Code for sending user data to the database and registering the user
+            // Logic to create unique Username for connecting Users i.e. firstinital#12345 (p#12345)
             await _navigationService.NavigateAsync("SimpleLoginPage");
         }
 
