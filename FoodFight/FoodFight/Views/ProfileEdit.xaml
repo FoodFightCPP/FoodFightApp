@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:controls="clr-namespace:FoodFight;assembly=FoodFight"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="FoodFight.Views.ProfileEdit">
+
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#00509D"
+                          Offset="0.0" />
+            <GradientStop Color="Black"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+        <Label Text="Profile Edit Screen Coming Soon!" TextColor="White" FontSize="34" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+
+        <StackLayout Orientation="Horizontal">
+            <Frame HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal">
+                    <controls:IconView Source="facebook_square.png" Foreground="Blue" WidthRequest="30" HeightRequest="30"/>
+                    <Label Text="Facebook" TextColor="#333942" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
+                    <Button Text="View Now" Command="{Binding ViewFacebookCommand}" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Frame HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal">
+                    <controls:IconView Source="instagram_square.png" Foreground="#FD1D1D" WidthRequest="30" HeightRequest="30"/>
+                    <Label Text="Instagram" TextColor="#333942" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
+                    <Button Text="View Now" Command="{Binding ViewInstagramCommand}" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Frame HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal">
+                    <controls:IconView Source="twitter_square.png" Foreground="#1DA1F2" HeightRequest="30" WidthRequest="30"/>
+                    <Label Text="Twitter" TextColor="#333942" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
+                    <Button Text="View Now" Command="{Binding ViewTwitterCommand}" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

@@ -10,7 +10,6 @@
             android:TabbedPage.BarSelectedItemColor="White"
              x:Class="FoodFight.Views.MainPage">
 
-    <TabbedPage.Children>
         <NavigationPage Title="Contacts" IconImageSource="ic_action_contact.png" >
             <x:Arguments>
                 <views:Contacts/>
@@ -41,11 +40,10 @@
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="Settings" IconImageSource="ic_action_settings.png" >
-            <x:Arguments>
-                <views:Settings/>
-            </x:Arguments>
-        </NavigationPage>
-    </TabbedPage.Children>
+    <NavigationPage Title="Settings" IconImageSource="ic_action_settings.png" >
+        <x:Arguments>
+            <views:Settings/>
+        </x:Arguments>
+    </NavigationPage>
 
 </TabbedPage>
