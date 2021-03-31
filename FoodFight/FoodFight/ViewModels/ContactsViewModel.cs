@@ -56,10 +56,10 @@ namespace FoodFight.ViewModels
                 Website = "",
                 ProfilePicture = ""
             };
-            //TestRepo();
+            TestRepo();
             //CreateContact();
             //UpdateContact();
-            DeleteUser();
+            //DeleteUser();
 
         }
 
