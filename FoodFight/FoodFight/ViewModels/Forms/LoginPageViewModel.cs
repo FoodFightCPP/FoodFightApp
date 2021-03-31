@@ -97,15 +97,25 @@ namespace FoodFight.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private async void LoginClicked(object obj)
         {
-            User mainUser = await _userRepo.GetByEmail(Email.ToLower(), "Users");
-            if (Crypto.IsValidPassword(Password, mainUser.Salt, mainUser.Password))
+            try
             {
-                await _navigationService.NavigateAsync("/MainPage?selectedTab=Home");
-            } 
-            else
-            {
-               await Application.Current.MainPage.DisplayAlert("Error", "Incorrect Email or Password, Please try again!", "Close");
+                User mainUser = await _userRepo.GetByEmail(Email.ToLower(), "Users");
+                if (Crypto.IsValidPassword(Password, mainUser.Salt, mainUser.Password))
+                {
+                    await _navigationService.NavigateAsync("/MainPage?selectedTab=Home");
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", "Incorrect Email or Password, Please try again!", "Close");
+                }
             }
+            catch (System.Exception)
+            {
+                await Application.Current.MainPage.DisplayAlert("Account Not Found", "Sorry that account does not exist! Please sign up for a free account", "Close");
+                Email = "";
+                Password = "";
+            }
+            
         }
 
         /// <summary>
