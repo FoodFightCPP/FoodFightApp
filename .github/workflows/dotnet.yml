@@ -1,0 +1,15 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+          
+  Android:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Android
+      run: |
+        nuget restore
+        cd FoodFight/FoodFight.Android
+        msbuild FoodFight.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug
