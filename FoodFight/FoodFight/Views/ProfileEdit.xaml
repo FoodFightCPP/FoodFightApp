@@ -15,20 +15,11 @@
         </LinearGradientBrush>
     </ContentPage.Background>
 
-    <StackLayout Orientation="Vertical" Margin="0, 20, 0, 0">
-        <Image Source="{Binding AppUser.ProfilePicture}" WidthRequest="120" HeightRequest="120" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Image.Clip>
-                <EllipseGeometry Center="60,60" RadiusX="60" RadiusY="60"/>
-            </Image.Clip>
-        </Image>
+    <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
-        <Label Text="{Binding AppUser.Name}" TextColor="White" FontSize="24" HorizontalTextAlignment="Center" />
-        <Label Text="{Binding AppUser.Email}" TextColor="White" FontSize="18" HorizontalTextAlignment="Center" />
+        <Label Text="Profile Edit Screen Coming Soon!" TextColor="White" FontSize="34" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
-        <Label Text="Bio" TextColor="White" FontSize="18" HorizontalTextAlignment="Center" Margin="0, 20, 0, 0"/>
-        <Label Text="{Binding AppUser.Bio}" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" Padding="20, 0"/>
-
-        <StackLayout Orientation="Horizontal" Margin="0, 60, 0, 0">
+        <StackLayout Orientation="Horizontal">
             <Frame HorizontalOptions="FillAndExpand">
                 <StackLayout Orientation="Horizontal">
                     <controls:IconView Source="facebook_square.png" Foreground="Blue" WidthRequest="30" HeightRequest="30"/>

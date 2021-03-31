@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Xamarin.Forms;
 
 namespace FoodFight.ViewModels
 {
@@ -23,6 +24,7 @@ namespace FoodFight.ViewModels
         }
 
         public DelegateCommand EditProfileCommand { get; set; }
+        public DelegateCommand LogOutCommand { get; set; }
 
         public ProfileViewModel(IDataService<User> profileRepo, INavigationService navigationService)
         {
@@ -30,6 +32,7 @@ namespace FoodFight.ViewModels
             GetProfileInformation();
             EditProfileCommand = new DelegateCommand(EditProfile);
             _navigationService = navigationService;
+            LogOutCommand = new DelegateCommand(LogOut);
         }
 
         private async void GetProfileInformation()
@@ -38,9 +41,18 @@ namespace FoodFight.ViewModels
             AppUser = await _profileRepo.Get(mainUser, "Users");
         }
 
-        void EditProfile()
+        async void EditProfile()
         {
-            var response = _navigationService.NavigateAsync("ProfileEdit");
+            await _navigationService.NavigateAsync("ProfileEdit");
+        }
+
+        async void LogOut()
+        {
+            var response = await Application.Current.MainPage.DisplayAlert("Log Out", "Are you sure you wish to Logout?", "Yes", "No");
+            if (response.Equals(true))
+            {
+                await _navigationService.NavigateAsync("/SimpleLoginPage");
+            }
         }
     }
 }
