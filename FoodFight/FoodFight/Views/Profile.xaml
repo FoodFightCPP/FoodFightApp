@@ -16,10 +16,10 @@
         </LinearGradientBrush>
     </ContentPage.Background>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="LogOut" Command="{Binding LogOutCommand}" IconImageSource="ic_launcher.png">
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="LogOut" Command="{Binding}" IconImageSource="ic_launcher.png">
         </ToolbarItem> 
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -44,12 +44,14 @@
             <Label Text="Bio" TextColor="White" FontSize="18" HorizontalTextAlignment="Center" Margin="0, 20, 0, 0"/>
             <Label Text="{Binding AppUser.Bio}" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" Padding="20, 0"/>
 
+            <Button Text="View Now" Command="{Binding EditProfileCommand}" />
+
             <StackLayout Orientation="Horizontal" Margin="0, 60, 0, 0">
                 <Frame HorizontalOptions="FillAndExpand">
                     <StackLayout Orientation="Horizontal">
                         <controls:IconView Source="facebook_square.png" Foreground="Blue" WidthRequest="30" HeightRequest="30"/>
                         <Label Text="Facebook" TextColor="#333942" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
-                        <Button Text="View Now" Command="{Binding ViewFacebookCommand}" HorizontalOptions="EndAndExpand"/>
+                        <Button Text="View Now" Command="{Binding EditProfileCommand}" />
                     </StackLayout>
                 </Frame>
             </StackLayout>
@@ -58,7 +60,7 @@
                     <StackLayout Orientation="Horizontal">
                         <controls:IconView Source="instagram_square.png" Foreground="#FD1D1D" WidthRequest="30" HeightRequest="30"/>
                         <Label Text="Instagram" TextColor="#333942" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
-                        <Button Text="View Now" Command="{Binding ViewInstagramCommand}" HorizontalOptions="EndAndExpand"/>
+                        <Button Text="View Now" Command="{Binding}" HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
                 </Frame>
             </StackLayout>
@@ -67,7 +69,7 @@
                     <StackLayout Orientation="Horizontal">
                         <controls:IconView Source="twitter_square.png" Foreground="#1DA1F2" HeightRequest="30" WidthRequest="30"/>
                         <Label Text="Twitter" TextColor="#333942" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
-                        <Button Text="View Now" Command="{Binding ViewTwitterCommand}" HorizontalOptions="EndAndExpand"/>
+                        <Button Text="View Now" Command="{Binding}" HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
                 </Frame>
             </StackLayout>
