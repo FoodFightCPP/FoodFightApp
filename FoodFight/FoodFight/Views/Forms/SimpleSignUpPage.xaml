@@ -91,7 +91,7 @@
                             Placeholder="Name"
                             PlaceholderColor="{DynamicResource Gray-700}"
                             Style="{StaticResource EntryStyle}"
-                            Text="{Binding Name}"
+                            Text="{Binding Name, Mode=TwoWay}"
                             TextColor="{DynamicResource Gray-900}" />
                     </border:SfBorder>
 
@@ -109,7 +109,7 @@
                             Placeholder="Password"
                             PlaceholderColor="{DynamicResource Gray-700}"
                             Style="{StaticResource EntryStyle}"
-                            Text="{Binding Password}"
+                            Text="{Binding Password, Mode=TwoWay}"
                             TextColor="{DynamicResource Gray-900}" />
                     </border:SfBorder>
 
@@ -124,7 +124,7 @@
                             Placeholder="Confirm Password"
                             PlaceholderColor="{DynamicResource Gray-700}"
                             Style="{StaticResource EntryStyle}"
-                            Text="{Binding ConfirmPassword}"
+                            Text="{Binding ConfirmPassword, Mode=TwoWay}"
                             TextColor="{DynamicResource Gray-900}" />
                     </border:SfBorder>
 

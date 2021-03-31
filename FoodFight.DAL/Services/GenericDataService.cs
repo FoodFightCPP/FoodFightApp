@@ -39,7 +39,14 @@ namespace FoodFight.DAL.Services
 
         public async Task<T> Get(Guid id, string type)
         {
-            var json = await client.GetStringAsync(BASEURL + type +"/" + id);
+            var json = await client.GetStringAsync(BASEURL + type +"/" + id.ToString());
+            var getUser = JsonConvert.DeserializeObject<T>(json);
+            return getUser;
+        }
+
+        public async Task<T> GetByEmail(string email, string type)
+        {
+            var json = await client.GetStringAsync(BASEURL + type + "/" + "Email/" + email);
             var getUser = JsonConvert.DeserializeObject<T>(json);
             return getUser;
         }

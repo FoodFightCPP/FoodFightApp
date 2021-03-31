@@ -2,6 +2,9 @@
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using CryptoService;
+using FoodFight.Domain.Models;
+using FoodFight.Domain.Services;
 
 namespace FoodFight.ViewModels.Forms
 {
@@ -15,6 +18,7 @@ namespace FoodFight.ViewModels.Forms
 
         private string password;
         readonly INavigationService _navigationService;
+        readonly IDataService<User> _userRepo;
 
         #endregion
 
@@ -23,13 +27,14 @@ namespace FoodFight.ViewModels.Forms
         /// <summary>
         /// Initializes a new instance for the <see cref="LoginPageViewModel" /> class.
         /// </summary>
-        public LoginPageViewModel(INavigationService navigation)
+        public LoginPageViewModel(INavigationService navigation, IDataService<User> userRepo)
         {
             _navigationService = navigation;
             this.LoginCommand = new Command(this.LoginClicked);
             this.SignUpCommand = new Command(this.SignUpClicked);
             this.ForgotPasswordCommand = new Command(this.ForgotPasswordClicked);
             this.SocialMediaLoginCommand = new Command(this.SocialLoggedIn);
+            _userRepo = userRepo;
         }
 
         #endregion
@@ -92,7 +97,25 @@ namespace FoodFight.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private async void LoginClicked(object obj)
         {
-            await _navigationService.NavigateAsync("/MainPage?selectedTab=Home");
+            try
+            {
+                User mainUser = await _userRepo.GetByEmail(Email.ToLower(), "Users");
+                if (Crypto.IsValidPassword(Password, mainUser.Salt, mainUser.Password))
+                {
+                    await _navigationService.NavigateAsync("/MainPage?selectedTab=Home");
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", "Incorrect Email or Password, Please try again!", "Close");
+                }
+            }
+            catch (System.Exception)
+            {
+                await Application.Current.MainPage.DisplayAlert("Account Not Found", "Sorry that account does not exist! Please sign up for a free account", "Close");
+                Email = "";
+                Password = "";
+            }
+            
         }
 
         /// <summary>

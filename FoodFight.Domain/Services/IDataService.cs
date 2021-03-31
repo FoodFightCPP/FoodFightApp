@@ -9,6 +9,7 @@ namespace FoodFight.Domain.Services
     {
         Task<IEnumerable<T>> GetAll(string type);
         Task<T> Get(Guid id, string type);
+        Task<T> GetByEmail(string Email, string type);
         Task<T> Create(T entity, string type);
         Task<T> Update(Guid id, T entity, string type);
         Task<bool> Delete(Guid id, string type);
