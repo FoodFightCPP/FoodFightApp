@@ -1,5 +1,8 @@
-﻿using Prism.Commands;
+﻿using FoodFight.Domain.Models;
+using FoodFight.Domain.Services;
+using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +12,17 @@ using Xamarin.Forms;
 
 namespace FoodFight.ViewModels
 {
-    public class StartViewModel : BindableBase
+    public class StartViewModel : ViewModelBase
     {
 
         double _latitude;
         double _longitude;
         double _userInputLat;
         double _userInputLong;
+
+        IDataService<User> _userRepo;
+
+        User _mainUser;
 
         public double Latitude 
         {
@@ -42,9 +49,17 @@ namespace FoodFight.ViewModels
         }
 
 
-        public StartViewModel()
+        public StartViewModel(IDataService<User> userRepo, INavigationService navigationService) : base (navigationService)
         {
+            _userRepo = userRepo;
+        }
+
+        public override void Initialize(INavigationParameters parameters)
+        {
+            base.Initialize(parameters);
+            _mainUser = parameters.GetValue<User>("MainUser");
             GetUserLocation();
+
         }
 
         private async void GetUserLocation()
@@ -58,7 +73,9 @@ namespace FoodFight.ViewModels
 
                 if (location != null)
                 {
-                    await Application.Current.MainPage.DisplayAlert("User Location", location.ToString(), "Close");
+                    _mainUser.Lat = location.Latitude.ToString();
+                    _mainUser.Lng = location.Longitude.ToString();
+                    await _userRepo.Update(_mainUser.UserId, _mainUser, "Users");
                 }
             }
             catch (Exception)
