@@ -3,6 +3,7 @@ using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -48,9 +49,13 @@ namespace FoodFight.ViewModels
 
         private async void GetUserLocation()
         {
+            CancellationTokenSource cts;
             try
             {
-                var location = await Geolocation.GetLastKnownLocationAsync();
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                cts = new CancellationTokenSource();
+                var location = await Geolocation.GetLocationAsync(request, cts.Token);
+
                 if (location != null)
                 {
                     await Application.Current.MainPage.DisplayAlert("User Location", location.ToString(), "Close");
