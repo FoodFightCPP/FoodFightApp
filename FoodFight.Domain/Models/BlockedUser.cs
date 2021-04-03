@@ -10,13 +10,13 @@ namespace FoodFight.Domain.Models
     public class BlockedUser : DomainObject
     {
         [JsonProperty("blockUserId")]
-        public Guid BlockUserId { get; set; }
+        public int BlockUserId { get; set; }
 
         [JsonProperty("baseUserId")]
-        public Guid BaseUserId { get; set; }
+        public int BaseUserId { get; set; }
 
         [JsonProperty("blockedUserId")]
-        public Guid BlockedUserId { get; set; }
+        public int BlockedUserId { get; set; }
 
         [JsonProperty("baseUser")]
         public User BaseUser { get; set; }

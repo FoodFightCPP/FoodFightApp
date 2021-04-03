@@ -8,6 +8,6 @@ namespace FoodFight.Domain.Models
     public class DomainObject
     {
         [JsonProperty("Id")]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }

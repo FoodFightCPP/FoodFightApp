@@ -11,13 +11,13 @@ namespace FoodFight.Domain.Models
     public class UserSetting : DomainObject
     {
         [JsonProperty("userSettingsId")]
-        public Guid UserSettingsId { get; set; }
+        public int UserSettingsId { get; set; }
 
         [JsonProperty("settingsId")]
-        public Guid SettingsId { get; set; }
+        public int SettingsId { get; set; }
 
         [JsonProperty("userId")]
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
 
         [JsonProperty("settings")]
         public Setting Settings { get; set; }

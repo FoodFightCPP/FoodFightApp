@@ -4,7 +4,8 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              Title="Contacts"
-             x:Class="FoodFight.Views.Contacts">
+             x:Class="FoodFight.Views.Contacts"
+             x:Name="Wolverine">
 
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
@@ -14,10 +15,12 @@
                           Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>
+    
 
     <StackLayout>
         <Label Text="Search for Contacts" TextColor="White" HorizontalOptions="CenterAndExpand" FontSize="24" Padding="0, 20, 0, 0" FontAttributes="Bold"/>
         <SearchBar Text="Friends" Background="White" Margin="20" />
+        
         <CollectionView ItemsSource="{Binding AppUsers}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -44,7 +47,7 @@
                                     <!--<Label Grid.Row="1" Text="{Binding Email}" TextColor="#333942" FontSize="12" HorizontalTextAlignment="Center" />-->
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
-                                    <Button Grid.Column="2" Text="Add Contact" BackgroundColor="#00509D" TextColor="White" Command="{Binding AddContactCommand}" HorizontalOptions="End" Padding="10"/>
+                                    <Button Grid.Column="2" Text="Add Contact" BackgroundColor="#00509D" TextColor="White" Command="{Binding BindingContext.HamburgerCommand, Source={x:Reference Wolverine}}" CommandParameter="{Binding UserId}" HorizontalOptions="End" Padding="10"/>                            
                                 </StackLayout>
                                 
                             </StackLayout>

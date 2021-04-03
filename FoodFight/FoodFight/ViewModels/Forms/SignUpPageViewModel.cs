@@ -223,7 +223,6 @@ namespace FoodFight.ViewModels.Forms
 
                     User mainUser = new User()
                     {
-                        UserId = Guid.NewGuid(),
                         Name = name.Trim().ToLower(),
                         Email = Email.ToLower(),
                         Password = Convert.ToBase64String(hashPass),

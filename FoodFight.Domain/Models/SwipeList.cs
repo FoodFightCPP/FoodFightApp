@@ -10,13 +10,13 @@ namespace FoodFight.Domain.Models
     public class SwipeList : DomainObject
     {
         [JsonProperty("swipeListId")]
-        public Guid SwipeListId { get; set; }
+        public int SwipeListId { get; set; }
 
         [JsonProperty("restaurantId")]
         public int RestaurantId { get; set; }
 
         [JsonProperty("matchSessionId")]
-        public Guid MatchSessionId { get; set; }
+        public int MatchSessionId { get; set; }
 
         [JsonProperty("matchSession")]
         public MatchSession MatchSession { get; set; }

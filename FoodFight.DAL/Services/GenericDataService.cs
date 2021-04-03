@@ -27,7 +27,7 @@ namespace FoodFight.DAL.Services
             return entity;
         }
 
-        public async Task<bool> Delete(Guid id, string type)
+        public async Task<bool> Delete(int id, string type)
         {
             var response = await client.DeleteAsync(BASEURL + type + "/" + id.ToString());
             if (response.IsSuccessStatusCode)
@@ -37,7 +37,7 @@ namespace FoodFight.DAL.Services
             return false;
         }
 
-        public async Task<T> Get(Guid id, string type)
+        public async Task<T> Get(int id, string type)
         {
             var json = await client.GetStringAsync(BASEURL + type +"/" + id.ToString());
             var getUser = JsonConvert.DeserializeObject<T>(json);
@@ -59,7 +59,7 @@ namespace FoodFight.DAL.Services
 
         }
 
-        public async Task<T> Update(Guid id, T entity, string type)
+        public async Task<T> Update(int id, T entity, string type)
         {
             var json = JsonConvert.SerializeObject(entity);
             StringContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");

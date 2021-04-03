@@ -17,10 +17,18 @@ namespace FoodFight.ViewModels
     {
 
         IDataService<User> _userRepo { get; set; }
+        IDataService<ConnectedUser> _contactRepo { get; set; }
 
         ObservableCollection<User> _users;
-
+        
+        ConnectedUser _contact;
         User _user;
+
+        public ConnectedUser Contact 
+        {
+            get => _contact;
+            set => SetProperty(ref _contact, value);
+        }
 
         public User MainUser 
         {
@@ -33,34 +41,34 @@ namespace FoodFight.ViewModels
             set => SetProperty(ref _users, value);
         }
 
-        public ContactsViewModel(IDataService<User> userRepo)
+        public DelegateCommand<int?> HamburgerCommand { get; private set; }
+
+
+
+
+        public ContactsViewModel(IDataService<User> userRepo, IDataService<ConnectedUser> contactRepo)
         {
             _userRepo = userRepo;
-            MainUser = new User()
-            {
-                UserId = new Guid("67A03584-68E0-4E04-8214-D969C66F308A"),
-                Name = "Pete BumMuffin",
-                Bio = "This is a bio, I know real original",
-                Street = "1234 Nowhere Lane",
-                City = "FairyLand",
-                State = "Michigan",
-                Email = "123DontCareAboutMe@whatever.com",
-                Gender = "Male",
-                Password = "123456789",
-                Phone = "231-555-5555",
-                Username = "p#12345",
-                Facebook = "",
-                Instagram = "",
-                Twitter = "",
-                ZipCode = "49690",
-                Website = "",
-                ProfilePicture = ""
-            };
+            _contactRepo = contactRepo;
+
             TestRepo();
             //CreateContact();
             //UpdateContact();
             //DeleteUser();
+            HamburgerCommand = new DelegateCommand<int?>(CreateConnectedUser);
 
+        }
+        
+        private async void CreateConnectedUser(int? parameter)
+        {
+            var param = parameter;
+            Contact = new ConnectedUser()
+            {
+                BaseUserId = 6,
+                FriendUserId = (int)param
+            };
+
+            await _contactRepo.Create(Contact, "ConnectedUsers");
         }
 
         private async void DeleteUser()        

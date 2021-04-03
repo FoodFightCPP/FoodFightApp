@@ -37,8 +37,7 @@ namespace FoodFight.ViewModels
 
         private async void GetProfileInformation()
         {
-            Guid mainUser = new Guid("3477E6CF-53DA-48D9-B6EA-3ECB7CF879FC");
-            AppUser = await _profileRepo.Get(mainUser, "Users");
+            AppUser = await _profileRepo.Get(6, "Users");
         }
 
         async void EditProfile()

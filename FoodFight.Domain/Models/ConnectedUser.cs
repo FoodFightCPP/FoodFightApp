@@ -10,13 +10,13 @@ namespace FoodFight.Domain.Models
     public class ConnectedUser : DomainObject
     {
         [JsonProperty("connectedUserId")]
-        public Guid ConnectedUserId { get; set; }
+        public int ConnectedUserId { get; set; }
 
         [JsonProperty("baseUserId")]
-        public Guid BaseUserId { get; set; }
+        public int BaseUserId { get; set; }
 
         [JsonProperty("friendUserId")]
-        public Guid FriendUserId { get; set; }
+        public int FriendUserId { get; set; }
 
         [JsonProperty("baseUser")]
         public User BaseUser { get; set; }

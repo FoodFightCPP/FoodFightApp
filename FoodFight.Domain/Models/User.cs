@@ -10,7 +10,7 @@ namespace FoodFight.Domain.Models
     public class User : DomainObject
     {
         [JsonProperty("userId")]
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
 
         [JsonProperty("username")]
         public string Username { get; set; }

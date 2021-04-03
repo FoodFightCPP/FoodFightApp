@@ -30,8 +30,8 @@ namespace FoodFight.ViewModels
 
         private async void GetName()
         {
-            Guid userId = new Guid("3477E6CF-53DA-48D9-B6EA-3ECB7CF879FC");
-            MainUser = await _dataService.Get(userId, "Users");
+            
+            MainUser = await _dataService.Get(6, "Users");
         }
     }
 }
