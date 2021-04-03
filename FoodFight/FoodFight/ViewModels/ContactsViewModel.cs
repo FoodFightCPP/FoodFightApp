@@ -17,8 +17,8 @@ namespace FoodFight.ViewModels
     public class ContactsViewModel : ViewModelBase
     {
 
-        IDataService<User> _userRepo { get; set; }
-        IDataService<ConnectedUser> _contactRepo { get; set; }
+        IDataService<User> _userRepo;
+        IDataService<ConnectedUser> _contactRepo;
 
         ObservableCollection<User> _users;
         

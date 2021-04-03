@@ -15,7 +15,7 @@
         </LinearGradientBrush>
     </ContentPage.Background>
 
-    <StackLayout>
+    <!--<StackLayout>
         <CollectionView ItemsSource="{Binding FavoriteRestaurants}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -32,11 +32,11 @@
 
                         <Frame Grid.ColumnSpan="3" Margin="5, 15, 5, -80" BackgroundColor="Azure">
                             <StackLayout Orientation="Horizontal" Padding="5">
-                                <!--<Image Grid.Column="0" Grid.Row="0" Source="{Binding Restaurant.Image}" WidthRequest="80" HeightRequest="80">
+                                --><!--<Image Grid.Column="0" Grid.Row="0" Source="{Binding Restaurant.Image}" WidthRequest="80" HeightRequest="80">
                                     <Image.Clip>
                                         <EllipseGeometry Center="40,40" RadiusX="30" RadiusY="30"/>
                                     </Image.Clip>
-                                </Image>-->
+                                </Image>--><!--
                                 <StackLayout Grid.Column="1" Orientation="Vertical" HeightRequest="80" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
                                     <Label Grid.Row="0" Text="{Binding Restaurant.Name}" TextColor="Black" FontSize="20" HorizontalTextAlignment="Start" />
                                     <Label Grid.Row="1" Text="{Binding Restaurant.Phone}" TextColor="Black" FontSize="12" HorizontalTextAlignment="Start" />
@@ -49,6 +49,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </StackLayout>-->
 
 </ContentPage>

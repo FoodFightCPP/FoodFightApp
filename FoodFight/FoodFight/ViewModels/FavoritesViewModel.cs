@@ -12,23 +12,23 @@ namespace FoodFight.ViewModels
     public class FavoritesViewModel : BindableBase
     {
         IDataService<FavoriteRestaurant> _favRestaurant { get; set; }
-        ObservableCollection<FavoriteRestaurant> _favoriteRestaurant;
+        //        ObservableCollection<FavoriteRestaurant> _favoriteRestaurant;
 
-        public ObservableCollection<FavoriteRestaurant> FavoriteRestaurants
-        {
-            get => _favoriteRestaurant;
-            set => SetProperty(ref _favoriteRestaurant, value);
-        }
+        //        public ObservableCollection<FavoriteRestaurant> FavoriteRestaurants
+        //        {
+        //            get => _favoriteRestaurant;
+        //            set => SetProperty(ref _favoriteRestaurant, value);
+        //        }
 
         public FavoritesViewModel(IDataService<FavoriteRestaurant> favRestaurantRepo)
         {
-            _favRestaurant = favRestaurantRepo;
-            GetFavoriteRestaurants();
+    //_favRestaurant = favRestaurantRepo;
+    //GetFavoriteRestaurants();
         }
 
-        private async void GetFavoriteRestaurants()
-        {
-            FavoriteRestaurants = new ObservableCollection<FavoriteRestaurant>(await _favRestaurant.GetAll("FavoriteRestaurants"));
-        }
+        //        private async void GetFavoriteRestaurants()
+        //        {
+        //            FavoriteRestaurants = new ObservableCollection<FavoriteRestaurant>(await _favRestaurant.GetAll("FavoriteRestaurants"));
+        //        }
     }
 }

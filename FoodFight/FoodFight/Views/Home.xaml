@@ -43,8 +43,33 @@
             />
         </StackLayout>
 
-        <Label Grid.Row="2" Text="Sorry you have no History to Display" TextColor="White" FontSize="18" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold"/>
+        <!--<Label Grid.Row="2" Text="Sorry you have no History to Display" TextColor="White" FontSize="18" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold"/>-->
 
+        <CollectionView Grid.Row="2" Margin="0, -200, 0, 0" ItemsSource="{Binding IndividualRestaurants}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Frame Margin="20, 10">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Name: " TextColor="Black"/>
+                                    <Label Text="{Binding Name}" TextColor="Black"/>
+                                    <Image Source="{Binding Icon}" HorizontalOptions="EndAndExpand" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Rating: " TextColor="Black" />
+                                    <Label Text="{Binding Rating}" TextColor="Black" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Total User Ratings: " TextColor="Black" />
+                                    <Label Text="{Binding UserRatingsTotal}" TextColor="Black" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
     </Grid>
 
