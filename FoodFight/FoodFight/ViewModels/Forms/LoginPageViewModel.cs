@@ -102,7 +102,11 @@ namespace FoodFight.ViewModels.Forms
                 User mainUser = await _userRepo.GetByEmail(Email.ToLower(), "Users");
                 if (Crypto.IsValidPassword(Password, mainUser.Salt, mainUser.Password))
                 {
-                    await _navigationService.NavigateAsync("/MainPage?selectedTab=Home");
+                    var user = new NavigationParameters
+                    {
+                        { "MainUser", mainUser }
+                    };
+                    await _navigationService.NavigateAsync("/MainPage?selectedTab=Home", user);
                 }
                 else
                 {

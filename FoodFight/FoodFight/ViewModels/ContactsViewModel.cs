@@ -3,6 +3,7 @@ using FoodFight.Domain.Services;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,7 +14,7 @@ using Xamarin.Forms;
 
 namespace FoodFight.ViewModels
 {
-    public class ContactsViewModel : BindableBase
+    public class ContactsViewModel : ViewModelBase
     {
 
         IDataService<User> _userRepo { get; set; }
@@ -46,7 +47,7 @@ namespace FoodFight.ViewModels
 
 
 
-        public ContactsViewModel(IDataService<User> userRepo, IDataService<ConnectedUser> contactRepo)
+        public ContactsViewModel(IDataService<User> userRepo, IDataService<ConnectedUser> contactRepo, INavigationService navigationService) : base(navigationService)
         {
             _userRepo = userRepo;
             _contactRepo = contactRepo;
@@ -64,7 +65,7 @@ namespace FoodFight.ViewModels
             var param = parameter;
             Contact = new ConnectedUser()
             {
-                BaseUserId = 6,
+                BaseUserId = MainUser.UserId,
                 FriendUserId = (int)param
             };
 
@@ -104,6 +105,12 @@ namespace FoodFight.ViewModels
         public async void TestRepo()
         { 
             AppUsers = new ObservableCollection<User>( await _userRepo.GetAll("Users"));
+        }
+
+        public override void Initialize(INavigationParameters parameters)
+        {
+            base.Initialize(parameters);
+            MainUser = parameters.GetValue<User>("MainUser");
         }
     }
 }

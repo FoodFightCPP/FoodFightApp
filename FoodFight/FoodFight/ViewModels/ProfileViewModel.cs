@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace FoodFight.ViewModels
 {
-    public class ProfileViewModel : BindableBase
+    public class ProfileViewModel : ViewModelBase
     {
         readonly IDataService<User> _profileRepo;
         INavigationService _navigationService;
@@ -26,18 +26,12 @@ namespace FoodFight.ViewModels
         public DelegateCommand EditProfileCommand { get; set; }
         public DelegateCommand LogOutCommand { get; set; }
 
-        public ProfileViewModel(IDataService<User> profileRepo, INavigationService navigationService)
+        public ProfileViewModel(IDataService<User> profileRepo, INavigationService navigationService) : base(navigationService)
         {
             _profileRepo = profileRepo;
-            GetProfileInformation();
             EditProfileCommand = new DelegateCommand(EditProfile);
             _navigationService = navigationService;
             LogOutCommand = new DelegateCommand(LogOut);
-        }
-
-        private async void GetProfileInformation()
-        {
-            AppUser = await _profileRepo.Get(6, "Users");
         }
 
         async void EditProfile()
@@ -52,6 +46,12 @@ namespace FoodFight.ViewModels
             {
                 await _navigationService.NavigateAsync("/SimpleLoginPage");
             }
+        }
+
+        public override void Initialize(INavigationParameters parameters)
+        {
+            base.Initialize(parameters);
+            AppUser = parameters.GetValue<User>("MainUser");
         }
     }
 }
