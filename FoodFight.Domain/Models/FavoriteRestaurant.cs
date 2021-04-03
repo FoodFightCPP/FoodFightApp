@@ -10,13 +10,13 @@ namespace FoodFight.Domain.Models
     public class FavoriteRestaurant : DomainObject
     {
         [JsonProperty("favoriteRestaurantId")]
-        public Guid FavoriteRestaurantId { get; set; }
+        public int FavoriteRestaurantId { get; set; }
 
         [JsonProperty("restaurantId")]
         public int RestaurantId { get; set; }
 
         [JsonProperty("userId")]
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
 
         [JsonProperty("restaurant")]
         public Restaurant Restaurant { get; set; }

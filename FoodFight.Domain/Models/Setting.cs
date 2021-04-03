@@ -10,7 +10,7 @@ namespace FoodFight.Domain.Models
     public class Setting : DomainObject
     {
         [JsonProperty("settingsId")]
-        public Guid SettingsId { get; set; }
+        public int SettingsId { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }

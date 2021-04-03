@@ -11,10 +11,10 @@ namespace FoodFight.Domain.Models
     public class MatchSession : DomainObject 
     {
         [JsonProperty("matchSessionId")]
-        public Guid MatchSessionId { get; set; }
+        public int MatchSessionId { get; set; }
 
         [JsonProperty("connectedUserId")]
-        public Guid ConnectedUserId { get; set; }
+        public int ConnectedUserId { get; set; }
 
         [JsonProperty("dateTime")]
         public DateTime DateTime { get; set; }
