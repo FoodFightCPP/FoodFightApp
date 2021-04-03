@@ -36,7 +36,11 @@ namespace FoodFight.ViewModels
 
         async void EditProfile()
         {
-            await _navigationService.NavigateAsync("ProfileEdit");
+            var user = new NavigationParameters
+                    {
+                        { "MainUser", AppUser }
+                    };
+            await _navigationService.NavigateAsync("ProfileEdit", user);
         }
 
         async void LogOut()

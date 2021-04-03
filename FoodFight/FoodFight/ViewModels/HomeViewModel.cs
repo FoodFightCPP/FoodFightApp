@@ -58,7 +58,6 @@ namespace FoodFight.ViewModels
 
             foreach (var item in Restaurants.Results)
             {
-
                 var res = new Result()
                 {
                     Name = item.Name,
