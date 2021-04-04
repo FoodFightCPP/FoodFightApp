@@ -106,7 +106,7 @@ namespace FoodFight.ViewModels.Forms
                     {
                         { "MainUser", mainUser }
                     };
-                    await _navigationService.NavigateAsync("/MainPage?selectedTab=Home", user);
+                    await _navigationService.NavigateAsync("/MainPage?selectedTab=Start", user);
                 }
                 else
                 {

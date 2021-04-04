@@ -10,17 +10,11 @@
             android:TabbedPage.BarSelectedItemColor="White"
              x:Class="FoodFight.Views.MainPage">
 
-        <NavigationPage Title="Contacts" IconImageSource="ic_action_contact.png" >
-            <x:Arguments>
-                <views:Contacts/>
-            </x:Arguments>
-        </NavigationPage>
-
-        <!--<NavigationPage Title="Favorites" IconImageSource="ic_action_favorite.png" >
-            <x:Arguments>
-                <views:Favorites/>
-            </x:Arguments>
-        </NavigationPage>-->
+    <NavigationPage Title="Contacts" IconImageSource="ic_action_contact.png" >
+        <x:Arguments>
+            <views:Contacts/>
+        </x:Arguments>
+    </NavigationPage>
 
     <NavigationPage Title="Start" IconImageSource="ic_action_location_on.png" >
         <x:Arguments>
@@ -28,22 +22,10 @@
         </x:Arguments>
     </NavigationPage>
 
-    <!--<NavigationPage Title="Home" IconImageSource="ic_action_home.png" >
-            <x:Arguments>
-                <views:Home/>
-            </x:Arguments>
-        </NavigationPage>-->
-
-        <NavigationPage Title="Profile" IconImageSource="ic_action_person.png" >
-            <x:Arguments>
-                <views:Profile/>
-            </x:Arguments>
-        </NavigationPage>
-
-    <!--<NavigationPage Title="Settings" IconImageSource="ic_action_settings.png" >
+    <NavigationPage Title="Profile" IconImageSource="ic_action_person.png" >
         <x:Arguments>
-            <views:Settings/>
+            <views:Profile/>
         </x:Arguments>
-    </NavigationPage>-->
+    </NavigationPage>
 
 </TabbedPage>
