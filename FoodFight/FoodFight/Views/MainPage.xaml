@@ -16,23 +16,23 @@
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="Favorites" IconImageSource="ic_action_favorite.png" >
+        <!--<NavigationPage Title="Favorites" IconImageSource="ic_action_favorite.png" >
             <x:Arguments>
                 <views:Favorites/>
             </x:Arguments>
-        </NavigationPage>
+        </NavigationPage>-->
 
-        <NavigationPage Title="Home" IconImageSource="ic_action_home.png" >
+    <NavigationPage Title="Start" IconImageSource="ic_action_location_on.png" >
+        <x:Arguments>
+            <views:Start/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <!--<NavigationPage Title="Home" IconImageSource="ic_action_home.png" >
             <x:Arguments>
                 <views:Home/>
             </x:Arguments>
-        </NavigationPage>
-
-        <NavigationPage Title="Start" IconImageSource="ic_action_location_on.png" >
-            <x:Arguments>
-                <views:Start/>
-            </x:Arguments>
-        </NavigationPage>
+        </NavigationPage>-->
 
         <NavigationPage Title="Profile" IconImageSource="ic_action_person.png" >
             <x:Arguments>
@@ -40,10 +40,10 @@
             </x:Arguments>
         </NavigationPage>
 
-    <NavigationPage Title="Settings" IconImageSource="ic_action_settings.png" >
+    <!--<NavigationPage Title="Settings" IconImageSource="ic_action_settings.png" >
         <x:Arguments>
             <views:Settings/>
         </x:Arguments>
-    </NavigationPage>
+    </NavigationPage>-->
 
 </TabbedPage>
