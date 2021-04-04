@@ -5,6 +5,7 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using Xamarin.Essentials;
@@ -15,16 +16,43 @@ namespace FoodFight.ViewModels
     public class StartViewModel : ViewModelBase
     {
 
+        #region Fields
+
         double _latitude;
         double _longitude;
         double _userInputLat;
         double _userInputLong;
 
         IDataService<User> _userRepo;
+        IDataService<ConnectedUser> _contactRepo;
 
         User _mainUser;
+        User _selectedContact;
+        ObservableCollection<ConnectedUser> _contacts;
 
-        public double Latitude 
+        #endregion
+
+        #region Properties
+
+        public User MainUser
+        {
+            get => _mainUser;
+            set => SetProperty(ref _mainUser, value);
+        }
+
+        public User SelectedContact
+        {
+            get => _selectedContact;
+            set => SetProperty(ref _selectedContact, value);
+        }
+
+        public ObservableCollection<ConnectedUser> Contacts
+        {
+            get => _contacts;
+            set => SetProperty(ref _contacts, value);
+        }
+
+        public double Latitude
         {
             get => _latitude;
             set => SetProperty(ref _latitude, value);
@@ -48,18 +76,43 @@ namespace FoodFight.ViewModels
             set => SetProperty(ref _userInputLong, value);
         }
 
+        #endregion
 
-        public StartViewModel(IDataService<User> userRepo, INavigationService navigationService) : base (navigationService)
+        #region DelegateCommands
+
+        public DelegateCommand<User> SelectContactCommand { get; set; }
+
+        #endregion
+
+        #region Constructor
+
+        public StartViewModel(IDataService<User> userRepo, IDataService<ConnectedUser> contactRepo, INavigationService navigationService) : base(navigationService)
         {
+            _contactRepo = contactRepo;
             _userRepo = userRepo;
+            SelectContactCommand = new DelegateCommand<User>(SelectContact);
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void SelectContact(User contact)
+        {
+            SelectedContact = contact;
+        }
+
+        private async void GetUserContacts()
+        {
+            Contacts = new ObservableCollection<ConnectedUser>(await _contactRepo.GetConnectedUserById(MainUser.UserId, "ConnectedUsers"));
         }
 
         public override void Initialize(INavigationParameters parameters)
         {
             base.Initialize(parameters);
-            _mainUser = parameters.GetValue<User>("MainUser");
+            MainUser = parameters.GetValue<User>("MainUser");
             GetUserLocation();
-
+            GetUserContacts();
         }
 
         private async void GetUserLocation()
@@ -73,9 +126,9 @@ namespace FoodFight.ViewModels
 
                 if (location != null)
                 {
-                    _mainUser.Lat = location.Latitude.ToString();
-                    _mainUser.Lng = location.Longitude.ToString();
-                    await _userRepo.Update(_mainUser.UserId, _mainUser, "Users");
+                    MainUser.Lat = location.Latitude.ToString();
+                    MainUser.Lng = location.Longitude.ToString();
+                    await _userRepo.Update(MainUser.UserId, MainUser, "Users");
                 }
             }
             catch (Exception)
@@ -84,5 +137,8 @@ namespace FoodFight.ViewModels
                 throw;
             }
         }
+
+        #endregion
+
     }
 }

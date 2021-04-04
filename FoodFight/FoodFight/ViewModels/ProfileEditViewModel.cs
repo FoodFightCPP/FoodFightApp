@@ -16,6 +16,9 @@ namespace FoodFight.ViewModels
         IDataService<User> _userRepo;
         User _mainUser;
 
+        public DelegateCommand UpdateProfileCommand { get; set; }
+        public DelegateCommand CancelUpdateCommand { get; set; }
+
         public User MainUser 
         {
             get => _mainUser;
@@ -26,6 +29,19 @@ namespace FoodFight.ViewModels
         {
             _navigationService = navigationService;
             _userRepo = userRepo;
+            UpdateProfileCommand = new DelegateCommand(UpdateProfile);
+            CancelUpdateCommand = new DelegateCommand(CancelUpdate);
+        }
+
+        private async void CancelUpdate()
+        {
+            await _navigationService.GoBackAsync();
+        }
+
+        private async void UpdateProfile()
+        {
+            await _userRepo.Update(MainUser.UserId, MainUser, "Users");
+            await _navigationService.GoBackAsync();
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)
