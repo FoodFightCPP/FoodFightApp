@@ -29,9 +29,8 @@
             </Image>
             
             <Label Text="{Binding AppUser.Name}" TextColor="White" FontSize="24" HorizontalTextAlignment="Center" />
-            
+
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Label Text="@" TextColor="White" FontSize="12" HorizontalTextAlignment="Start"/>
                 <Label Text="{Binding AppUser.Username}" TextColor="White" FontSize="12" HorizontalTextAlignment="Start" />
             </StackLayout>
             
@@ -83,7 +82,7 @@
                         <StackLayout Orientation="Horizontal">
                             <controls:IconView Source="instagram_square.png" Foreground="#FD1D1D" WidthRequest="30" HeightRequest="30"/>
                             <Label Text="Instagram" TextColor="#333942" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
-                            <Button Text="View Now" BackgroundColor="#00509D" TextColor="White" Command="{Binding ViewInstagramCommand}" CommandParameter="{Binding AppUser.Instagram}" HorizontalOptions="EndAndExpand"/>
+                            <Button Text="View Now" BackgroundColor="#00509D" TextColor="White" Command="{Binding ViewFacebookCommand}" CommandParameter="{Binding AppUser.Instagram}" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                     </Frame>
                 </StackLayout>
@@ -93,7 +92,7 @@
                         <StackLayout Orientation="Horizontal">
                             <controls:IconView Source="twitter_square.png" Foreground="#00509D" HeightRequest="30" WidthRequest="30"/>
                             <Label Text="Twitter" TextColor="#333942" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
-                            <Button Text="View Now" BackgroundColor="#00509D" TextColor="White" Command="{Binding ViewTwitterCommand}" CommandParameter="{Binding AppUser.Twitter}" HorizontalOptions="EndAndExpand"/>
+                            <Button Text="View Now" BackgroundColor="#00509D" TextColor="White" Command="{Binding ViewFacebookCommand}" CommandParameter="{Binding AppUser.Twitter}" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                     </Frame>
                 </StackLayout>
