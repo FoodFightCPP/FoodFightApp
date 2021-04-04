@@ -51,6 +51,22 @@ namespace FoodFight.DAL.Services
             return getUser;
         }
 
+        public async Task<IEnumerable<T>> GetConnectedUserById(int id, string type)
+        {
+            try
+            {
+                var json = await client.GetStringAsync(BASEURL + type + "/ByUser/" + id.ToString());
+                var getEntities = JsonConvert.DeserializeObject<T[]>(json);
+                return getEntities;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            
+        }
+
         public async Task<IEnumerable<T>> GetAll(string type)
         {
             var json = await client.GetStringAsync(BASEURL + type +"/");

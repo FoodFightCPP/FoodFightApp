@@ -67,7 +67,7 @@
                Margin="0, 20" />
 
 
-            <StackLayout Orientation="Horizontal"
+            <StackLayout Orientation="Vertical"
                      Padding="20, 0">
                 <Label Text="Phone: "
                    TextColor="#FCBF49"
@@ -83,7 +83,7 @@
                        Keyboard="Telephone"/>
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal"
+            <StackLayout Orientation="Vertical"
                      Padding="20, 0">
                 <Label Text="Email: "
                    TextColor="#FCBF49"
@@ -98,7 +98,7 @@
                        PlaceholderColor="Gray"/>
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal"
+            <StackLayout Orientation="Vertical"
                      Padding="20, 0">
                 <Label Text="Address: "
                    TextColor="#FCBF49"
@@ -113,8 +113,7 @@
                        PlaceholderColor="Gray"/>
             </StackLayout>
 
-            <StackLayout Orientation="Vertical"
-                     Margin="120, 0, 20, 0">
+            <StackLayout Orientation="Vertical" Margin="20, 0">
                 
                 <Entry Text="{Binding MainUser.City, Mode=TwoWay}"
                    TextColor="White"
@@ -137,7 +136,7 @@
                    PlaceholderColor="Gray"/>
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal"
+            <StackLayout Orientation="Vertical"
                      Padding="20, 0">
                 <Label Text="Gender: "
                    TextColor="#FCBF49"
