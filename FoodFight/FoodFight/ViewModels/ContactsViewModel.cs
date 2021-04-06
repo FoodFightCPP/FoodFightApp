@@ -70,7 +70,8 @@ namespace FoodFight.ViewModels
             };
 
             await _contactRepo.Create(Contact, "ConnectedUsers");
-            
+            await Application.Current.MainPage.DisplayAlert("Successful", "Contact has been added!","Close");
+
         }
 
         private async void DeleteUser()        
