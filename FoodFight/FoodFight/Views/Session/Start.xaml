@@ -52,7 +52,7 @@
                                     <Label Grid.Row="0" Text="{Binding FriendUser.Name}" TextColor="#333942" FontSize="20" HorizontalTextAlignment="Center" />
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
-                                    <Button Grid.Column="2" Text="Start Session" BackgroundColor="#00509D" TextColor="White" Command="{Binding BindingContext.SelectContactCommand, Source={x:Reference Magneto}}" CommandParameter="{Binding FriendUser}" HorizontalOptions="End" Padding="10"/>
+                                    <Button Grid.Column="2" Text="Start Session" BackgroundColor="#00509D" TextColor="White" Command="{Binding BindingContext.SelectContactCommand, Source={x:Reference Magneto}}" CommandParameter="{Binding .}" HorizontalOptions="End" Padding="10"/>
                                 </StackLayout>
 
                             </StackLayout>

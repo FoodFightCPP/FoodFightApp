@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:swipecards="clr-namespace:SwipeCards.Controls;assembly=SwipeCards.Controls"
+             x:Class="FoodFight.Views.Session.SessionSwipeScreen">
+
+
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#00509D"
+                          Offset="0.0" />
+            <GradientStop Color="Black"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+    <swipecards:CardStackView
+            x:Name="CardStackView"
+            ItemsSource="{Binding IndividualRestaurants}"
+            SwipedRightCommand="{Binding SwipedRightCommand}"
+            SwipedLeftCommand="{Binding SwipedLeftCommand}">
+
+        <swipecards:CardStackView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout>
+                    <Label Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="24" TextColor="#333942"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Overall Rating: " VerticalOptions="Center" HorizontalOptions="Center" FontSize="18" TextColor="#333942"/>
+                        <Label Text="{Binding Rating}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="18" TextColor="#333942"/>
+                        <Image Source="{Binding Icon}" VerticalOptions="End" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Total User Ratings: " VerticalOptions="Center" HorizontalOptions="Center" FontSize="18" TextColor="#333942"/>
+                        <Label Text="{Binding UserRatingsTotal}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="18" TextColor="#333942"/>
+                    </StackLayout>
+                </StackLayout>
+            </DataTemplate>
+        </swipecards:CardStackView.ItemTemplate>
+    </swipecards:CardStackView>
+    </Grid>
+
+
+
+
+</ContentPage>

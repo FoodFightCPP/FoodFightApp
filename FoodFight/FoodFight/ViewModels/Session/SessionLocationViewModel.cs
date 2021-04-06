@@ -21,6 +21,7 @@ namespace FoodFight.ViewModels
 
         INavigationService _navigationService;
         IDataService<User> _userRepo;
+        private IDataService<MatchSession> _matchSessionRepo;
 
         User _mainUser;
         ConnectedUser _connectedUsers;
@@ -81,6 +82,8 @@ namespace FoodFight.ViewModels
             set => SetProperty(ref _userLocation, value);
         }
 
+        public MatchSession CurrentMatchSession { get; set; }
+
         #endregion
 
         #region DelgateCommands
@@ -92,10 +95,11 @@ namespace FoodFight.ViewModels
 
         #region Constructor
 
-        public SessionLocationViewModel(INavigationService navigationService, IDataService<User> userRepo) : base(navigationService)
+        public SessionLocationViewModel(INavigationService navigationService, IDataService<User> userRepo, IDataService<MatchSession> matchSessionRepo) : base(navigationService)
         {
             _navigationService = navigationService;
             _userRepo = userRepo;
+            _matchSessionRepo = matchSessionRepo;
             StartMatchSessionCommand = new DelegateCommand(StartMatchSession);
             UsePhoneLocationCommand = new DelegateCommand(GetUserLocation);
         }
@@ -113,7 +117,8 @@ namespace FoodFight.ViewModels
         {
             base.OnNavigatedTo(parameters);
             MainUser = parameters.GetValue<User>("MainUser");
-            //ConnectedId = parameters.GetValue<int>("Contact");
+            ConnectedUsers = parameters.GetValue<ConnectedUser>("Contact");
+            GetUserLocationByPhone = parameters.GetValue<bool>("GetLocationFromPhone");
         }
 
         private Task<IEnumerable<double>> GetUserLatLng()
@@ -127,9 +132,11 @@ namespace FoodFight.ViewModels
         {
             var navigationParameters = new NavigationParameters()
             {
-                {"MainUser", MainUser }
+                {"MainUser", MainUser },
+                {"Contact",ConnectedUsers }
             };
             await _navigationService.NavigateAsync("RequestPermission", navigationParameters);
+            GetUserLocationByPhone = true;
         }
 
         private async void CreateMatchSession(bool GetUserLocationByPhone)
@@ -147,6 +154,8 @@ namespace FoodFight.ViewModels
                     Lng = MainUser.Lng,
                     DateTime = DateTime.Now
                 };
+                CurrentMatchSession = matchSession;
+                await _matchSessionRepo.Create(matchSession, "MatchSessions");
             }
             else
             {
@@ -157,16 +166,17 @@ namespace FoodFight.ViewModels
                     Lng = UserInputLng.ToString(),
                     DateTime = DateTime.Now
                 };
+                CurrentMatchSession = matchSession;
+                await _matchSessionRepo.Create(matchSession, "MatchSessions");
             }
 
-
-            for (int i = 0; i < 10; i++)
+            var navigationParameters = new NavigationParameters()
             {
+                {"MainUser", MainUser},
+                {"MatchSession", CurrentMatchSession}
+            };
 
-                await Application.Current.MainPage.DisplayAlert("Restaurant " + i, "Do you want " + i, "Yes", "No");
-
-            }
-            bool IsDone = true;
+            await _navigationService.NavigateAsync("/NavigationPage/SessionSwipeScreen", navigationParameters);
         }
 
         #endregion

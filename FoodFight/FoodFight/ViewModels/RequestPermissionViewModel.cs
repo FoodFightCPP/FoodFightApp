@@ -23,6 +23,8 @@ namespace FoodFight.ViewModels
 
         public User MainUser { get; set; }
 
+        public ConnectedUser ConnectedUsers { get; set; }
+
         public DelegateCommand GrantPermissionCommand { get; set; }
 
         public RequestPermissionViewModel(INavigationService navigationService, IDataService<User> userRepo) : base(navigationService)
@@ -66,18 +68,21 @@ namespace FoodFight.ViewModels
 
             await _userRepo.Update(MainUser.UserId, MainUser, "Users");
 
-            var navigationParmeters = new NavigationParameters()
+            var navigationParameters = new NavigationParameters()
             {
-                {"MainUser", MainUser }
+                {"MainUser", MainUser },
+                {"Contact", ConnectedUsers },
+                {"GetLocationFromPhone", true }
             };
 
-            await navigationService.NavigateAsync("SessionLocation", navigationParmeters);
+            await navigationService.NavigateAsync("SessionLocation", navigationParameters);
         }
 
         public override void Initialize(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
             MainUser = parameters.GetValue<User>("MainUser");
+            ConnectedUsers = parameters.GetValue<ConnectedUser>("Contact");
         }
 
     }

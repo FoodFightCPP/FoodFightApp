@@ -27,7 +27,7 @@ namespace FoodFight.ViewModels
         IDataService<ConnectedUser> _contactRepo;
 
         User _mainUser;
-        User _selectedContact;
+        ConnectedUser _selectedContact;
         ObservableCollection<ConnectedUser> _contacts;
         INavigationService _navigationService;
 
@@ -41,7 +41,7 @@ namespace FoodFight.ViewModels
             set => SetProperty(ref _mainUser, value);
         }
 
-        public User SelectedContact
+        public ConnectedUser SelectedContact
         {
             get => _selectedContact;
             set => SetProperty(ref _selectedContact, value);
@@ -81,7 +81,7 @@ namespace FoodFight.ViewModels
 
         #region DelegateCommands
 
-        public DelegateCommand<User> SelectContactCommand { get; set; }
+        public DelegateCommand<ConnectedUser> SelectContactCommand { get; set; }
 
         public DelegateCommand UpdateContactCommand { get; set; }
 
@@ -93,7 +93,7 @@ namespace FoodFight.ViewModels
         {
             _contactRepo = contactRepo;
             _userRepo = userRepo;
-            SelectContactCommand = new DelegateCommand<User>(SelectContact);
+            SelectContactCommand = new DelegateCommand<ConnectedUser>(SelectContact);
             _navigationService = navigationService;
             UpdateContactCommand = new DelegateCommand(GetUserContacts);
         }
@@ -102,13 +102,13 @@ namespace FoodFight.ViewModels
 
         #region Methods
         // Change this to get just the ConnectedUser Id instead of the entire User
-        private async void SelectContact(User mainUser)
+        private async void SelectContact(ConnectedUser mainUser)
         {
             SelectedContact = mainUser;
             var parameters = new NavigationParameters()
             {
-                {"MainUser", new User() },
-                {"Contact", new ConnectedUser() }
+                {"MainUser", MainUser },
+                {"Contact", SelectedContact }
             };
 
             await _navigationService.NavigateAsync("SessionLocation", parameters);
