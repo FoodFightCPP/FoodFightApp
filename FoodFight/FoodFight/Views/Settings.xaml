@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="Settings"
+             x:Class="FoodFight.Views.Settings">
+
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#00509D"
+                          Offset="0.0" />
+            <GradientStop Color="Black"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        
+       <Label TextColor="White" Grid.Row="0" Text="Change User Settings" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="30"/>
+        
+        <Frame Grid.Row="1">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Display Phone" TextColor="#333942" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold" FontSize="24"/>
+                <Switch IsToggled="True" OnColor="#FCBF49" ThumbColor="#00509D" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+        </Frame>
+            
+        <Frame Grid.Row="2">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Display Email" TextColor="#333942" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold" FontSize="24"/>
+                <Switch IsToggled="True" OnColor="#FCBF49" ThumbColor="#00509D" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+        </Frame>
+
+        <Frame Grid.Row="3">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Display Location" TextColor="#333942" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold" FontSize="24"/>
+                <Switch IsToggled="False" OnColor="#FCBF49" ThumbColor="#00509D" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+        </Frame>
+
+        <Frame Grid.Row="4" Margin="0, 0, 0, 5">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Display Gender" TextColor="#333942" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold" FontSize="24"/>
+                <Switch IsToggled="True" OnColor="#FCBF49" ThumbColor="#00509D" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+        </Frame>
+
+    </Grid>
+
+</ContentPage>

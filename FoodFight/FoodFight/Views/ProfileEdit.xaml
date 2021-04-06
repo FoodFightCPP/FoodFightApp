@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:controls="clr-namespace:FoodFight;assembly=FoodFight"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="FoodFight.Views.ProfileEdit">
+
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#00509D"
+                          Offset="0.0" />
+            <GradientStop Color="Black"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <ScrollView>
+        <StackLayout Orientation="Vertical">
+
+            <Label Text="Upload New Profile Image" 
+                   TextColor="#FCBF49"
+                   FontSize="24"
+                   Padding="20,20, 20, 0" />
+            
+            <Entry Text="{Binding MainUser.ProfilePicture, Mode=TwoWay}"
+                   FontSize="14"
+                   Margin="20, 0"
+                   Placeholder="https://www.example.com/image1.png"
+                   PlaceholderColor="Gray"
+                   TextColor="White"/>
+            
+            <Label Text="Name"
+                   Padding="20,0"
+                   TextColor="#FCBF49"
+                   FontSize="24"
+                   HorizontalOptions="Start" 
+                   VerticalOptions="Center"/>
+            
+            <Entry x:Name="EditProfile" Text="{Binding MainUser.Name, Mode=TwoWay}"
+                   TextColor="White"
+                   Margin="20, 0"
+                   FontSize="24"
+                   Placeholder="John Smith"
+                   PlaceholderColor="Gray"/>
+
+            <Label Text="Bio"
+                   Padding="20, 0"
+                   TextColor="#FCBF49"
+                   FontSize="24"
+                   HorizontalOptions="Start" 
+                   VerticalOptions="Center"/>
+           
+            <Editor Text="{Binding MainUser.Bio, Mode=TwoWay}"
+                TextColor="White"
+                HeightRequest="150"
+                FontSize="24"
+                Margin="20, 0"
+                MaxLength="255"
+                    Placeholder="This is my bio and it is limited to 255 characters!"
+                    PlaceholderColor="Gray"/>
+           
+            <Label Text="User Information"
+               TextColor="White"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Margin="0, 20" />
+
+
+            <StackLayout Orientation="Vertical"
+                     Padding="20, 0">
+                <Label Text="Phone: "
+                   TextColor="#FCBF49"
+                   FontSize="24"
+                   HorizontalOptions="Start" 
+                   VerticalOptions="Center"/>
+                <Entry Text="{Binding MainUser.Phone, Mode=TwoWay}"
+                   TextColor="White"
+                   FontSize="24"
+                   HorizontalOptions="FillAndExpand" 
+                       Placeholder="231-555-5555"
+                       PlaceholderColor="Gray"
+                       Keyboard="Telephone"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical"
+                     Padding="20, 0">
+                <Label Text="Email: "
+                   TextColor="#FCBF49"
+                   FontSize="24"
+                   HorizontalOptions="Start" 
+                   VerticalOptions="Center" />
+                <Entry Text="{Binding MainUser.Email, Mode=TwoWay}"
+                   TextColor="White"
+                   FontSize="24"
+                   HorizontalOptions="FillAndExpand"
+                       Placeholder="examples@example.com"
+                       PlaceholderColor="Gray"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical"
+                     Padding="20, 0">
+                <Label Text="Address: "
+                   TextColor="#FCBF49"
+                   FontSize="24"
+                   HorizontalOptions="Start" 
+                   VerticalOptions="Center"/>
+                <Entry Text="{Binding MainUser.Street, Mode=TwoWay}"
+                   TextColor="White"
+                   FontSize="24"
+                   HorizontalOptions="FillAndExpand"
+                       Placeholder="1234 Fairy Tale Lane"
+                       PlaceholderColor="Gray"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Margin="20, 0">
+                
+                <Entry Text="{Binding MainUser.City, Mode=TwoWay}"
+                   TextColor="White"
+                   FontSize="24"
+                   HorizontalOptions="FillAndExpand" 
+                   VerticalOptions="Center"
+                   Placeholder="CityNameHere"
+                   PlaceholderColor="Gray"/>
+                <Entry Text="{Binding MainUser.State, Mode=TwoWay}"
+                   TextColor="White"
+                   FontSize="24"
+                   HorizontalOptions="FillAndExpand"
+                       Placeholder="StateNameHere"
+                   PlaceholderColor="Gray"/>
+                <Entry Text="{Binding MainUser.ZipCode, Mode=TwoWay}"
+                   TextColor="White"
+                   FontSize="24"
+                   HorizontalOptions="FillAndExpand"
+                       Placeholder="ZipcodeHere"
+                   PlaceholderColor="Gray"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical"
+                     Padding="20, 0">
+                <Label Text="Gender: "
+                   TextColor="#FCBF49"
+                   FontSize="24"
+                   HorizontalOptions="Start" 
+                   VerticalOptions="Center"
+                   />
+                <Entry Text="{Binding MainUser.Gender,Mode=TwoWay}"
+                   TextColor="White"
+                   FontSize="24"
+                   HorizontalOptions="FillAndExpand"
+                   Placeholder="Enter Any Gender Association"
+                   PlaceholderColor="Gray"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Facebook: " Padding="20,0" TextColor="#FCBF49" FontSize="24" HorizontalOptions="Start" VerticalOptions="End"/>
+                <Entry Text="{Binding MainUser.Facebook, Mode=TwoWay}" Margin="20, 0" TextColor="White" FontSize="24" HorizontalOptions="FillAndExpand" Placeholder="https://facebook.com/username"
+                   PlaceholderColor="Gray" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical">
+                <Label Text="Instagram: " Padding="20,0" TextColor="#FCBF49" FontSize="24" HorizontalOptions="Start" VerticalOptions="End"/>
+                <Entry Text="{Binding MainUser.Instagram, Mode=TwoWay}" Margin="20, 0" TextColor="White" FontSize="24" HorizontalOptions="FillAndExpand" Placeholder="https://instagram.com/username"
+                   PlaceholderColor="Gray"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical">
+                <Label Text="Twitter: " Padding="20,0" TextColor="#FCBF49" FontSize="24" HorizontalOptions="Start" VerticalOptions="End"/>
+                <Entry Text="{Binding MainUser.Twitter, Mode=TwoWay}" Margin="20, 0" TextColor="White" FontSize="24" HorizontalOptions="FillAndExpand" Placeholder="https://twitter.com/username"
+                   PlaceholderColor="Gray"/>
+            </StackLayout>
+            <Frame BackgroundColor="Azure">
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Save"
+                    Command="{Binding UpdateProfileCommand}" HorizontalOptions="CenterAndExpand" BackgroundColor="Green" TextColor="White"/>
+                    <Button Text="Cancel" Command="{Binding CancelUpdateCommand}" HorizontalOptions="CenterAndExpand" BackgroundColor="Red" TextColor="White"/>
+                </StackLayout>
+            </Frame>
+            
+
+        </StackLayout>
+    </ScrollView>
+    
+
+</ContentPage>

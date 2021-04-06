@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="Home"
+             x:Class="FoodFight.Views.Home">
+
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#00509D"
+                          Offset="0.0" />
+            <GradientStop Color="Black"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+            <Label Text="Search Contacts" TextColor="White" FontSize="24" HorizontalTextAlignment="Center" Padding="0, 20, 0, 0"/>
+            
+            <SearchBar BackgroundColor="White" Margin="20"/>    
+            
+        </StackLayout>
+        
+        <StackLayout Orientation="Vertical" Grid.Row="1">
+            <Label Text="History" TextColor="White" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center" Grid.Row="1" />
+            <Line
+            X1="0"
+            Y1="0"
+            X2="1080"
+            Y2="0"
+            Stroke="white"
+            />
+        </StackLayout>
+
+        <!--<Label Grid.Row="2" Text="Sorry you have no History to Display" TextColor="White" FontSize="18" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold"/>-->
+
+        <CollectionView Grid.Row="2" Margin="0, -200, 0, 0" ItemsSource="{Binding IndividualRestaurants}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Frame Margin="20, 10">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}" TextColor="Black"/>
+                                    <Image Source="{Binding Icon}" HorizontalOptions="EndAndExpand" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Rating: " TextColor="Black" />
+                                    <Label Text="{Binding Rating}" TextColor="Black" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Total User Ratings: " TextColor="Black" />
+                                    <Label Text="{Binding UserRatingsTotal}" TextColor="Black" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>
