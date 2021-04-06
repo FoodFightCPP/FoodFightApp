@@ -241,6 +241,7 @@ namespace FoodFight.ViewModels.Forms
                     ConfirmPassword = "";
                 }
             }
+            await Application.Current.MainPage.DisplayAlert("Sign Up Successful", "Welcome to FoodFight!", "Close");
             #endregion
         }
     }

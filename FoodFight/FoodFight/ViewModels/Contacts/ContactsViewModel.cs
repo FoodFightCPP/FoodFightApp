@@ -70,36 +70,7 @@ namespace FoodFight.ViewModels
             };
 
             await _contactRepo.Create(Contact, "ConnectedUsers");
-        }
-
-        private async void DeleteUser()        
-        {
-            bool success = await _userRepo.Delete(MainUser.UserId, "Users");
-            if (success)
-            {
-               await Application.Current.MainPage.DisplayAlert("Success", "User Deleted from the DB", "Close");
-            } else
-            {
-               await Application.Current.MainPage.DisplayAlert("Failure", "User NOT Deleted from the DB", "Close");
-            }
-            
-        }
-
-        private async void UpdateContact()
-        {
-            MainUser.Name = "Billy Bob";
-            MainUser.Bio = "This is a dumb thing to say here";
-            MainUser = await _userRepo.Update(MainUser.UserId, MainUser, "Users");
-        }
-
-        private async void CreateContact()
-        {
-            var isSuccessful = await _userRepo.Create(MainUser, "Users");
-
-            if (isSuccessful != null)
-            {
-                await Application.Current.MainPage.DisplayAlert("Success","User added to the DB", "Close");
-            }
+            await Application.Current.MainPage.DisplayAlert("Successful", "Contact has been added!", "Close");
         }
 
         public async void TestRepo()

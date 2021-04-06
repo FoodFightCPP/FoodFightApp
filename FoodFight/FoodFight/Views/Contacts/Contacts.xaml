@@ -43,7 +43,7 @@
                                     </Image.Clip>
                                 </Image>
                                 <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                                    <Label Grid.Row="0" Text="{Binding Name}" TextColor="#333942" FontSize="20" HorizontalTextAlignment="Center" />
+                                    <Label Grid.Row="0" Text="{Binding Username}" TextColor="#333942" FontSize="16" HorizontalTextAlignment="Center" />
                                     <!--<Label Grid.Row="1" Text="{Binding Email}" TextColor="#333942" FontSize="12" HorizontalTextAlignment="Center" />-->
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">

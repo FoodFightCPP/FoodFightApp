@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="FoodFight.Views.Session.SessionLocation"
+             Title="Session Location">
+
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#00509D"
+                          Offset="0.0" />
+            <GradientStop Color="Black"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <StackLayout Margin="20, 20">
+        <Label Text="If you do not wish to use your phones location for the match session, please input a zipcode below and press the Start Match Session button to begin." TextColor="White" />
+        <StackLayout Orientation="Horizontal">
+            <Entry Placeholder="49690" HorizontalOptions="FillAndExpand"/>
+            <Button Text="Get Location from Zipcode" Command="{Binding GetUserLocationFromZipcodeCommand}"/>
+        </StackLayout>
+        <Button Text="Start Match Session" Command="{Binding StartMatchSessionCommand}" HorizontalOptions="End" />
+    </StackLayout>
+    
+</ContentPage>

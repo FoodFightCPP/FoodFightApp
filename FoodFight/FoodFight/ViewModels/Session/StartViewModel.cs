@@ -29,6 +29,7 @@ namespace FoodFight.ViewModels
         User _mainUser;
         User _selectedContact;
         ObservableCollection<ConnectedUser> _contacts;
+        INavigationService _navigationService;
 
         #endregion
 
@@ -82,6 +83,8 @@ namespace FoodFight.ViewModels
 
         public DelegateCommand<User> SelectContactCommand { get; set; }
 
+        public DelegateCommand UpdateContactCommand { get; set; }
+
         #endregion
 
         #region Constructor
@@ -91,15 +94,24 @@ namespace FoodFight.ViewModels
             _contactRepo = contactRepo;
             _userRepo = userRepo;
             SelectContactCommand = new DelegateCommand<User>(SelectContact);
+            _navigationService = navigationService;
+            UpdateContactCommand = new DelegateCommand(GetUserContacts);
         }
 
         #endregion
 
         #region Methods
-
-        private void SelectContact(User contact)
+        // Change this to get just the ConnectedUser Id instead of the entire User
+        private async void SelectContact(User mainUser)
         {
-            SelectedContact = contact;
+            SelectedContact = mainUser;
+            var parameters = new NavigationParameters()
+            {
+                {"MainUser", new User() },
+                {"Contact", new ConnectedUser() }
+            };
+
+            await _navigationService.NavigateAsync("SessionLocation", parameters);
         }
 
         private async void GetUserContacts()

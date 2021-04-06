@@ -6,6 +6,7 @@ using FoodFight.ViewModels;
 using FoodFight.ViewModels.Forms;
 using FoodFight.Views;
 using FoodFight.Views.Forms;
+using FoodFight.Views.Session;
 using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
@@ -57,6 +58,7 @@ namespace FoodFight
             containerRegistry.RegisterForNavigation<SimpleLoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<SimpleSignUpPage, SignUpPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfileEdit, ProfileEditViewModel>();
+            containerRegistry.RegisterForNavigation<SessionLocation, SessionLocationViewModel>();
         }
     }
 }
