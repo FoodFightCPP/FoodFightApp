@@ -96,6 +96,7 @@ namespace FoodFight.ViewModels
             UpdateContactCommand = new DelegateCommand(GetUserContacts);
         }
 
+
         #endregion
 
         #region Methods              

@@ -23,8 +23,8 @@
                 TextColor="White"
                 Command="{Binding UpdateContactCommand}"             
                 HorizontalOptions="End"
-                Padding="10" />
-   
+                Padding="10" />   
+        
     <CollectionView ItemsSource="{Binding Contacts, Mode=TwoWay}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
