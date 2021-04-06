@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="FoodFight.Views.Session.RequestPermission">
+
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#00509D"
+                          Offset="0.0" />
+            <GradientStop Color="Black"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <StackLayout Margin="20">
+        <Frame CornerRadius="20">
+            <StackLayout>
+                <Label Text="Why Do We Need Your Location?" TextColor="Black" FontSize="24" HorizontalTextAlignment="Center" />
+                <Label FontSize="20" Text="This application uses your location in order to get the latitude and longitude of your current location in order to accurately give you a list of restaurants around you. If you wish to not utilize this service, please navigate back to the Session Location page and input a zipcode instead. This will make a web api call to get a latitude and longitude of that area and find results from that area instead. You can always revoke the location permission at anytime by going to Settings -> Applications -> FoodFight -> Permissions -> Location (Deny)"/>
+            </StackLayout>
+        </Frame>
+        
+        <Button Text="Grant Location Permission" 
+                Command="{Binding GrantPermissionCommand}"
+                BackgroundColor="#FCBF49"
+                TextColor="#333942"
+                FontAttributes="Bold"
+                HorizontalOptions="FillAndExpand" />
+    </StackLayout>
+    
+
+</ContentPage>

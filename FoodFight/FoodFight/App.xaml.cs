@@ -59,6 +59,7 @@ namespace FoodFight
             containerRegistry.RegisterForNavigation<SimpleSignUpPage, SignUpPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfileEdit, ProfileEditViewModel>();
             containerRegistry.RegisterForNavigation<SessionLocation, SessionLocationViewModel>();
+            containerRegistry.RegisterForNavigation<RequestPermission, RequestPermissionViewModel>();
         }
     }
 }

@@ -10,17 +10,21 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Location = Xamarin.Essentials.Location;
 
 namespace FoodFight.ViewModels
 {
     public class SessionLocationViewModel : ViewModelBase
     {
+
+        #region Fields
+
         INavigationService _navigationService;
         IDataService<User> _userRepo;
 
-        User _selectedContact;
         User _mainUser;
         ConnectedUser _connectedUsers;
+        Location _userLocation;
 
         double _lat;
         double _lng;
@@ -29,45 +33,76 @@ namespace FoodFight.ViewModels
         double _userInputLng;
         int _zipcode;
         bool GetUserLocationByPhone;
+        int _connectedId;
 
-        public User MainUser 
+        #endregion
+
+        #region Properties
+
+        public int ConnectedId
+        {
+            get => _connectedId;
+            set => SetProperty(ref _connectedId, value);
+        }
+
+        public User MainUser
         {
             get => _mainUser;
             set => SetProperty(ref _mainUser, value);
         }
 
-        public ConnectedUser ConnectedUsers 
+        public ConnectedUser ConnectedUsers
         {
             get => _connectedUsers;
             set => SetProperty(ref _connectedUsers, value);
         }
 
-        public double UserInputLat 
+        public double UserInputLat
         {
             get => _userInputLat;
             set => SetProperty(ref _userInputLat, value);
         }
 
-        public double UserInputLng 
+        public double UserInputLng
         {
             get => _userInputLng;
             set => SetProperty(ref _userInputLng, value);
         }
 
-        public int Zipcode 
+        public int Zipcode
         {
             get => _zipcode;
             set => SetProperty(ref _zipcode, value);
         }
 
+        public Location UserLocation
+        {
+            get => _userLocation;
+            set => SetProperty(ref _userLocation, value);
+        }
+
+        #endregion
+
+        #region DelgateCommands
+
         public DelegateCommand StartMatchSessionCommand { get; set; }
+        public DelegateCommand UsePhoneLocationCommand { get; set; }
+
+        #endregion
+
+        #region Constructor
 
         public SessionLocationViewModel(INavigationService navigationService, IDataService<User> userRepo) : base(navigationService)
         {
             _navigationService = navigationService;
             _userRepo = userRepo;
             StartMatchSessionCommand = new DelegateCommand(StartMatchSession);
+            UsePhoneLocationCommand = new DelegateCommand(GetUserLocation);
         }
+
+        #endregion
+
+        #region Methods
 
         private void StartMatchSession()
         {
@@ -76,10 +111,9 @@ namespace FoodFight.ViewModels
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
-            base.Initialize(parameters);
+            base.OnNavigatedTo(parameters);
             MainUser = parameters.GetValue<User>("MainUser");
-            ConnectedUsers = parameters.GetValue<ConnectedUser>("Contact");
-            GetUserLocation();
+            //ConnectedId = parameters.GetValue<int>("Contact");
         }
 
         private Task<IEnumerable<double>> GetUserLatLng()
@@ -91,25 +125,11 @@ namespace FoodFight.ViewModels
 
         private async void GetUserLocation()
         {
-            CancellationTokenSource cts;
-            try
+            var navigationParameters = new NavigationParameters()
             {
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
-                cts = new CancellationTokenSource();
-                var location = await Geolocation.GetLocationAsync(request, cts.Token);
-
-                if (location != null)
-                {
-                    MainUser.Lat = location.Latitude.ToString();
-                    MainUser.Lng = location.Longitude.ToString();
-                    await _userRepo.Update(MainUser.UserId, MainUser, "Users");
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+                {"MainUser", MainUser }
+            };
+            await _navigationService.NavigateAsync("RequestPermission", navigationParameters);
         }
 
         private async void CreateMatchSession(bool GetUserLocationByPhone)
@@ -127,7 +147,7 @@ namespace FoodFight.ViewModels
                     Lng = MainUser.Lng,
                     DateTime = DateTime.Now
                 };
-            } 
+            }
             else
             {
                 MatchSession matchSession = new MatchSession()
@@ -142,14 +162,13 @@ namespace FoodFight.ViewModels
 
             for (int i = 0; i < 10; i++)
             {
-                
+
                 await Application.Current.MainPage.DisplayAlert("Restaurant " + i, "Do you want " + i, "Yes", "No");
 
             }
             bool IsDone = true;
         }
 
-
-
+        #endregion
     }
 }

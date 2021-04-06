@@ -123,32 +123,9 @@ namespace FoodFight.ViewModels
         {
             base.Initialize(parameters);
             MainUser = parameters.GetValue<User>("MainUser");
-            GetUserLocation();
             GetUserContacts();
         }
 
-        private async void GetUserLocation()
-        {
-            CancellationTokenSource cts;
-            try
-            {
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
-                cts = new CancellationTokenSource();
-                var location = await Geolocation.GetLocationAsync(request, cts.Token);
-
-                if (location != null)
-                {
-                    MainUser.Lat = location.Latitude.ToString();
-                    MainUser.Lng = location.Longitude.ToString();
-                    await _userRepo.Update(MainUser.UserId, MainUser, "Users");
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
 
         #endregion
 
